@@ -1,7 +1,5 @@
 const {sum, subtract} = require('../math')
 
-let result, expected
-
 const expect = actual => {
   return {
     toBe(expected) {
@@ -14,12 +12,30 @@ const expect = actual => {
   }
 }
 
-result = sum(3, 7)
-expected = 10
+const test = (title, callback) => {
+  try {
+    callback()
+    console.log(`⚡️ ${title}`)
+  } catch (error) {
+    console.error(`☠️ ${title}`)
+    console.error(error)
+  }
+}
 
-expect(result).toBe(expected);
+const sumTest = () => {
+  const result = sum(3, 7)
+  const expected = 10
+  
+  expect(result).toBe(expected);
+}
 
-result = subtract(7, 3)
-expected = 4
+test('sum adds numbers', sumTest)
 
-expect(result).toBe(expected);
+const subtractTest = () => {
+  const result = subtract(7, 3)
+  const expected = 4
+  
+  expect(result).toBe(expected);
+}
+
+test('subtract subtracts numbers', subtractTest)
