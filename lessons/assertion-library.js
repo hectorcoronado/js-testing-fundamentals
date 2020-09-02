@@ -14,8 +14,25 @@ function expect(actual) {
   return {
     toBe(expected) {
       if (actual !== expected) {
+        throw new Error(`${actual} is not ${expected}`)
+      }
+    },
+    // you can add any number of assertions here:
+    toEqual(expected) {
+      if (actual !== expected) {
         throw new Error(`${actual} is not equal to ${expected}`)
       }
+    },
+    toBeGreaterThan(expected) {
+      if (actual <= expected) {
+        throw new Error(`${actual} is not greater than ${expected}`)
+      }
+    },
+    toBeLessThan(expected) {
+      if (actual >= expected) {
+        throw new Error(`${actual} is not less than ${expected}`)
+      }
     }
+    // ...and so on!
   }
 }
